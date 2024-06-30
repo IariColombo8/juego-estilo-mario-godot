@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://cbo10e5jc0ygu"]
+
+[ext_resource type="PackedScene" uid="uid://3hdkn3hsmlmq" path="res://escenas/objetos/cubohongo.tscn" id="1_628ma"]
+
+[node name="cuboMoneda" instance=ExtResource("1_628ma")]

@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://b8l03v7dcteh3"]
+
+[ext_resource type="Script" path="res://scripts/objetos/hongo.gd" id="1_8a4in"]
+[ext_resource type="Texture2D" uid="uid://b4rw3c3017j1j" path="res://assets/mapa/mario assets/Items.png" id="1_075c2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jnwus"]
+size = Vector2(16, 16)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_27bbq"]
+radius = 9.0
+
+[node name="hongo" type="CharacterBody2D" groups=["hongo"]]
+collision_layer = 16
+collision_mask = 5
+script = ExtResource("1_8a4in")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-8, -17)
+texture = ExtResource("1_075c2")
+centered = false
+hframes = 5
+vframes = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -9)
+shape = SubResource("RectangleShape2D_jnwus")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -10)
+shape = SubResource("CircleShape2D_27bbq")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

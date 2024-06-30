@@ -1,0 +1,72 @@
+[gd_scene load_steps=11 format=3 uid="uid://b0weryc3ppa6y"]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_68667"]
+[ext_resource type="Texture2D" uid="uid://dg3oyb8rjh7jr" path="res://assets/mapa/tilemap-characters_packed.png" id="1_b4ufl"]
+[ext_resource type="PackedScene" uid="uid://iepoo5skiqjl" path="res://escenas/HeatboxComponent.tscn" id="3_pfabf"]
+[ext_resource type="PackedScene" uid="uid://c4a81ku03oan8" path="res://escenas/HealthComponent.tscn" id="4_ma3lb"]
+[ext_resource type="PackedScene" uid="uid://nyjnnoovat7y" path="res://escenas/movimiento.tscn" id="5_e5rl0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_83y7e"]
+atlas = ExtResource("1_b4ufl")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6px4v"]
+atlas = ExtResource("1_b4ufl")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wv6pf"]
+atlas = ExtResource("1_b4ufl")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dgqks"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_83y7e")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6px4v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wv6pf")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xv84k"]
+size = Vector2(14, 22)
+
+[node name="player" type="CharacterBody2D"]
+script = ExtResource("1_68667")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_dgqks")
+animation = &"idle"
+
+[node name="heatboxComponent" parent="." instance=ExtResource("3_pfabf")]
+
+[node name="healthComponent" parent="." instance=ExtResource("4_ma3lb")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_xv84k")
+
+[node name="Movimiento" parent="." instance=ExtResource("5_e5rl0")]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(-98, 47)
+offset = Vector2(100, -50)
+position_smoothing_enabled = true
+position_smoothing_speed = 2.0
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+editor_draw_drag_margin = true

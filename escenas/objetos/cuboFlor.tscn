@@ -1,0 +1,65 @@
+[gd_scene load_steps=8 format=3 uid="uid://b4u3lgex04dix"]
+
+[ext_resource type="Script" path="res://scripts/objetos/cuboFlor.gd" id="1_ow4kn"]
+[ext_resource type="PackedScene" uid="uid://u8pvognp42b" path="res://escenas/objetos/flor.tscn" id="2_sytpy"]
+[ext_resource type="Texture2D" uid="uid://bu256ddvupflk" path="res://assets/mapa/mario assets/OverWorld2.png" id="3_1v2xw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ogt0g"]
+atlas = ExtResource("3_1v2xw")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5wt26"]
+atlas = ExtResource("3_1v2xw")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_af0kg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ogt0g")
+}],
+"loop": true,
+"name": &"lleno",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5wt26")
+}],
+"loop": true,
+"name": &"vacio",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h4fh2"]
+size = Vector2(22, 22)
+
+[node name="cuboFlor" type="StaticBody2D"]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_ow4kn")
+prize = ExtResource("2_sytpy")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-0.12, 10.88)
+scale = Vector2(1.36, 1.36)
+sprite_frames = SubResource("SpriteFrames_af0kg")
+animation = &"lleno"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(0, 11)
+scale = Vector2(0.989, 0.989)
+shape = SubResource("RectangleShape2D_h4fh2")
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(-0.12, 10.88)
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
+visible = false
+scale = Vector2(0.989, 0.989)
+shape = SubResource("RectangleShape2D_h4fh2")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

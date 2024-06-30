@@ -1,0 +1,62 @@
+[gd_scene load_steps=8 format=3 uid="uid://8e07yfpo27ua"]
+
+[ext_resource type="Script" path="res://scripts/objetos/cuboHongo.gd" id="1_0pgpv"]
+[ext_resource type="PackedScene" uid="uid://b8l03v7dcteh3" path="res://escenas/objetos/hongo.tscn" id="2_e0pje"]
+[ext_resource type="Texture2D" uid="uid://bu256ddvupflk" path="res://assets/mapa/mario assets/OverWorld2.png" id="3_qf471"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ogt0g"]
+atlas = ExtResource("3_qf471")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5wt26"]
+atlas = ExtResource("3_qf471")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_af0kg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ogt0g")
+}],
+"loop": true,
+"name": &"lleno",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5wt26")
+}],
+"loop": true,
+"name": &"vacio",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h4fh2"]
+size = Vector2(22, 22)
+
+[node name="cuboHongo" type="StaticBody2D"]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_0pgpv")
+prize = ExtResource("2_e0pje")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(1.36, 1.36)
+sprite_frames = SubResource("SpriteFrames_af0kg")
+animation = &"lleno"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+scale = Vector2(0.989, 0.989)
+shape = SubResource("RectangleShape2D_h4fh2")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
+visible = false
+scale = Vector2(0.989, 0.989)
+shape = SubResource("RectangleShape2D_h4fh2")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

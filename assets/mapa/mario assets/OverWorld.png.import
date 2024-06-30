@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dg3oyb8rjh7jr"
-path="res://.godot/imported/tilemap-characters_packed.png-980e199febbf6070fb3f2d0bd2424cff.ctex"
+uid="uid://c0tfl0t4882e4"
+path="res://.godot/imported/OverWorld.png-9142737e88c7b45f63c47c1bf18585dd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/tilemap-characters_packed.png"
-dest_files=["res://.godot/imported/tilemap-characters_packed.png-980e199febbf6070fb3f2d0bd2424cff.ctex"]
+source_file="res://assets/mapa/mario assets/OverWorld.png"
+dest_files=["res://.godot/imported/OverWorld.png-9142737e88c7b45f63c47c1bf18585dd.ctex"]
 
 [params]
 

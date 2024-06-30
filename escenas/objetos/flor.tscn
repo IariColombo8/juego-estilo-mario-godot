@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://u8pvognp42b"]
+
+[ext_resource type="Texture2D" uid="uid://b4rw3c3017j1j" path="res://assets/mapa/mario assets/Items.png" id="1_wfrxi"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_du3wy"]
+radius = 9.05539
+
+[node name="flor" type="StaticBody2D"]
+collision_layer = 16
+collision_mask = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -8)
+texture = ExtResource("1_wfrxi")
+hframes = 5
+vframes = 3
+frame = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -9)
+shape = SubResource("CircleShape2D_du3wy")

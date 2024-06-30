@@ -48,5 +48,6 @@ position = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_xv84k")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_dgqks")
-animation = &"walk"
+animation = &"idle"

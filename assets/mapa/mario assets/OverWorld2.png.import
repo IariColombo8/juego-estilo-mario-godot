@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cdgb5j63qafls"
-path="res://.godot/imported/tilemap-backgrounds_packed.png-3e317ba42fb71d26c50267a237c26c37.ctex"
+uid="uid://bu256ddvupflk"
+path="res://.godot/imported/OverWorld2.png-8ef2d59684304e671fd44b4ff95af4bc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/tilemap-backgrounds_packed.png"
-dest_files=["res://.godot/imported/tilemap-backgrounds_packed.png-3e317ba42fb71d26c50267a237c26c37.ctex"]
+source_file="res://assets/mapa/mario assets/OverWorld2.png"
+dest_files=["res://.godot/imported/OverWorld2.png-8ef2d59684304e671fd44b4ff95af4bc.ctex"]
 
 [params]
 

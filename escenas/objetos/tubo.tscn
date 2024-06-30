@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://lshjhu7b0goy"]
+
+[ext_resource type="Texture2D" uid="uid://cwxupyhglnl0w" path="res://assets/mapa/mario assets/OverWorldmc23.png" id="1_gtnf0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hns4l"]
+size = Vector2(44, 89)
+
+[node name="tubo" type="StaticBody2D" groups=["tuboo"]]
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_gtnf0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_hns4l")

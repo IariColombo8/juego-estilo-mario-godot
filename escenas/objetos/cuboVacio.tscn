@@ -1,0 +1,68 @@
+[gd_scene load_steps=9 format=3 uid="uid://doeurpmnhaoy8"]
+
+[ext_resource type="Script" path="res://scripts/objetos/cuboVacio.gd" id="1_esi8q"]
+[ext_resource type="Texture2D" uid="uid://c0tfl0t4882e4" path="res://assets/mapa/mario assets/OverWorld.png" id="2_k7vmx"]
+[ext_resource type="Texture2D" uid="uid://bu256ddvupflk" path="res://assets/mapa/mario assets/OverWorld2.png" id="3_hw8bn"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ndqn"]
+atlas = ExtResource("2_k7vmx")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u5axr"]
+atlas = ExtResource("3_hw8bn")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_oyj6o"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4ndqn")
+}],
+"loop": true,
+"name": &"lleno",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u5axr")
+}],
+"loop": true,
+"name": &"vacio",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_02rbm"]
+size = Vector2(31, 30.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0w21d"]
+size = Vector2(22, 2)
+
+[node name="cuboVacio" type="StaticBody2D"]
+position = Vector2(0, -5)
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_esi8q")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-0.5, 16)
+scale = Vector2(1.36, 1.36)
+sprite_frames = SubResource("SpriteFrames_oyj6o")
+animation = &"lleno"
+autoplay = "lleno"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(-0.5, 15.675)
+scale = Vector2(0.7, 0.7)
+shape = SubResource("RectangleShape2D_02rbm")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+visible = false
+position = Vector2(-1, 28)
+shape = SubResource("RectangleShape2D_0w21d")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

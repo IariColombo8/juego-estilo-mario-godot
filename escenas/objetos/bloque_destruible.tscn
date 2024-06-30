@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://yjnog1du6ra7"]
+
+[ext_resource type="Script" path="res://scripts/objetos/bloqueDestruible.gd" id="1_6efgs"]
+[ext_resource type="Texture2D" uid="uid://bu256ddvupflk" path="res://assets/mapa/mario assets/OverWorld2.png" id="1_xjitw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fk7p3"]
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kryhk"]
+size = Vector2(21, 2)
+
+[node name="bloque_destruible" type="StaticBody2D"]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_6efgs")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(1.37, 1.37)
+texture = ExtResource("1_xjitw")
+hframes = 8
+vframes = 8
+frame = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+scale = Vector2(1.37, 1.37)
+shape = SubResource("RectangleShape2D_fk7p3")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+visible = false
+position = Vector2(0, 12)
+shape = SubResource("RectangleShape2D_kryhk")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
