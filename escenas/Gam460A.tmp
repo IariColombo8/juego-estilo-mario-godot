@@ -269,7 +269,7 @@ position = Vector2(1579, 191)
 [node name="enemigos" type="Node" parent="."]
 
 [node name="Enemy" parent="enemigos" instance=ExtResource("11_hdciv")]
-position = Vector2(289, 277)
+position = Vector2(236, 359)
 
 [node name="Enemy2" parent="enemigos" instance=ExtResource("11_hdciv")]
 position = Vector2(1569, 360)
@@ -296,7 +296,7 @@ position = Vector2(919, 360)
 position = Vector2(885, 360)
 
 [node name="player" parent="." instance=ExtResource("12_vhkww")]
-position = Vector2(96, 339)
+position = Vector2(59, 346)
 scale = Vector2(1.5, 1.5)
 
 [node name="cuboHongo" parent="." instance=ExtResource("13_npwae")]
@@ -304,3 +304,6 @@ position = Vector2(258, 293)
 
 [node name="cuboFlor" parent="." instance=ExtResource("14_h1eb5")]
 position = Vector2(571, 298)
+
+[node name="tubo" parent="." instance=ExtResource("9_re7bo")]
+position = Vector2(129, 388)

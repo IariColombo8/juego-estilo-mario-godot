@@ -1,9 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://yhyy1pqvm52r"]
+[gd_scene load_steps=9 format=3 uid="uid://yhyy1pqvm52r"]
 
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_m3q2h"]
 [ext_resource type="Texture2D" uid="uid://bombrkpongf34" path="res://assets/mapa/mario assets/Enemies.png" id="2_x37di"]
-[ext_resource type="PackedScene" uid="uid://iepoo5skiqjl" path="res://escenas/HeatboxComponent.tscn" id="3_uimyt"]
-[ext_resource type="PackedScene" uid="uid://c4a81ku03oan8" path="res://escenas/HealthComponent.tscn" id="4_3hctp"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_w1b5h"]
 atlas = ExtResource("2_x37di")
@@ -43,9 +41,9 @@ animations = [{
 size = Vector2(18, 15)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_20qda"]
-size = Vector2(18, 2)
+size = Vector2(20, 2)
 
-[node name="Enemy" type="CharacterBody2D"]
+[node name="Enemy" type="CharacterBody2D" groups=["enemigo_1"]]
 collision_layer = 8
 collision_mask = 3
 script = ExtResource("1_m3q2h")
@@ -57,22 +55,25 @@ sprite_frames = SubResource("SpriteFrames_j8jcf")
 animation = &"walk"
 autoplay = "walk"
 
-[node name="heatboxComponent" parent="." instance=ExtResource("3_uimyt")]
-visible = false
-
-[node name="healthComponent" parent="." instance=ExtResource("4_3hctp")]
-visible = false
-
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
 position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_wcyae")
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 8
-collision_mask = 2
+collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(0, -8)
 shape = SubResource("RectangleShape2D_20qda")
 
+[node name="FloorCheck" type="RayCast2D" parent="."]
+rotation = 1.5708
+target_position = Vector2(15, 0)
+
+[node name="WallCheck" type="RayCast2D" parent="."]
+rotation = 3.14159
+target_position = Vector2(15, 0)
+
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

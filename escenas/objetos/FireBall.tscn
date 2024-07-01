@@ -1,0 +1,75 @@
+[gd_scene load_steps=10 format=3 uid="uid://dvsuur0j8n1h1"]
+
+[ext_resource type="Texture2D" uid="uid://dseq52axu7ejp" path="res://assets/mapa/mario assets/ball.png" id="1_3bbj3"]
+[ext_resource type="Script" path="res://scripts/objetos/FireBall.gd" id="1_ljpna"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ssq75"]
+atlas = ExtResource("1_3bbj3")
+region = Rect2(0, 0, 19, 23)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ydbmc"]
+atlas = ExtResource("1_3bbj3")
+region = Rect2(114, 0, 19, 23)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x37qw"]
+atlas = ExtResource("1_3bbj3")
+region = Rect2(38, 0, 19, 23)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aa5t3"]
+atlas = ExtResource("1_3bbj3")
+region = Rect2(95, 0, 19, 23)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wlnrq"]
+atlas = ExtResource("1_3bbj3")
+region = Rect2(133, 0, 19, 23)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xvuj5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ssq75")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ydbmc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x37qw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aa5t3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wlnrq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_t2jue"]
+radius = 9.0
+
+[node name="FireBall" type="CharacterBody2D" groups=["atack"]]
+collision_layer = 0
+collision_mask = 9
+script = ExtResource("1_ljpna")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_xvuj5")
+frame_progress = 0.12417
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_t2jue")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 9
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_t2jue")
+
+[node name="Timer" type="Timer" parent="."]
+process_callback = 0
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

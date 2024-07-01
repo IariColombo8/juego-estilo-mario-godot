@@ -1,7 +1,8 @@
-[gd_scene load_steps=28 format=3 uid="uid://b0weryc3ppa6y"]
+[gd_scene load_steps=29 format=3 uid="uid://b0weryc3ppa6y"]
 
 [ext_resource type="Script" path="res://scripts/Mario.gd" id="1_upqdt"]
 [ext_resource type="Texture2D" uid="uid://dmkbyhdbqp4gk" path="res://assets/mapa/mario assets/Mario.png" id="2_bxhvi"]
+[ext_resource type="PackedScene" uid="uid://dvsuur0j8n1h1" path="res://escenas/objetos/FireBall.tscn" id="2_wijms"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lpwhv"]
 atlas = ExtResource("2_bxhvi")
@@ -97,7 +98,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_jjq3p")
 }],
 "loop": true,
-"name": &"atack_r",
+"name": &"atack_f",
 "speed": 5.0
 }, {
 "frames": [{
@@ -129,7 +130,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_1up4h")
 }],
 "loop": true,
-"name": &"idle_r",
+"name": &"idle_f",
 "speed": 5.0
 }, {
 "frames": [{
@@ -153,7 +154,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_u1vbq")
 }],
 "loop": true,
-"name": &"jump_r",
+"name": &"jump_f",
 "speed": 5.0
 }, {
 "frames": [{
@@ -195,7 +196,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_exjp7")
 }],
 "loop": true,
-"name": &"walk_r",
+"name": &"walk_f",
 "speed": 5.0
 }, {
 "frames": [{
@@ -217,20 +218,21 @@ animations = [{
 size = Vector2(14.1414, 17.6768)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cki2j"]
-size = Vector2(14, 17)
+size = Vector2(18, 32)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lelam"]
-size = Vector2(12, 19)
+size = Vector2(16, 34)
 
-[node name="Mario" type="CharacterBody2D"]
+[node name="Mario" type="CharacterBody2D" groups=["Mario"]]
 collision_layer = 2
 collision_mask = 31
 script = ExtResource("1_upqdt")
+atack = ExtResource("2_wijms")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_dgqks")
-animation = &"idle_s"
+animation = &"walk_f"
 autoplay = "idle_s"
 
 [node name="CollisionShape_s" type="CollisionShape2D" parent="."]
@@ -241,7 +243,6 @@ shape = SubResource("RectangleShape2D_xv84k")
 
 [node name="CollisionShape_b" type="CollisionShape2D" parent="."]
 visible = false
-position = Vector2(0, 7.5)
 shape = SubResource("RectangleShape2D_cki2j")
 disabled = true
 
@@ -259,10 +260,13 @@ editor_draw_drag_margin = true
 collision_layer = 2
 collision_mask = 28
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape_sa" type="CollisionShape2D" parent="Area2D"]
 visible = false
 position = Vector2(0, 7.5)
 shape = SubResource("RectangleShape2D_lelam")
 
-[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[node name="CollisionShape_ba" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_lelam")
+
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
